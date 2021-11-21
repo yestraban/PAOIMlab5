@@ -23,11 +23,16 @@ public class EditStudentFrame extends JFrame implements ActionListener{
     JButton birthButt;
     JButton addPtsButt;
     JButton rmPtsButt;
+    JButton stCndButt;
+
+    JComboBox conditionBox;
+
+    StudentCondition[] stCond= new StudentCondition[]{StudentCondition.catchingUp, StudentCondition.sick,StudentCondition.present, StudentCondition.notPresent};
 
     EditStudentFrame(Student input){
         studentToEdit = input;
         this.setSize(500, 300);
-        this.setLayout(new GridLayout(5,3));
+        this.setLayout(new GridLayout(6,3));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         firstNameField = new JTextField();
@@ -36,17 +41,36 @@ public class EditStudentFrame extends JFrame implements ActionListener{
         addPtsField = new JTextField();
         rmPtsField = new JTextField();
 
+
         firstNameButt = new JButton("ok");
         lastNameButt = new JButton("ok");
         birthButt = new JButton("ok");
         addPtsButt = new JButton("ok");
         rmPtsButt = new JButton("ok");
+        stCndButt = new JButton("ok");
+
+        firstNameButt.addActionListener(this);
+        lastNameButt.addActionListener(this);
+        birthButt.addActionListener(this);
+        addPtsButt.addActionListener(this);
+        rmPtsButt.addActionListener(this);
+        stCndButt.addActionListener(this);
 
         JLabel firstNameLabel = new JLabel("New first name:");
         JLabel lastNameLabel = new JLabel("New last name:");
         JLabel birthLabel = new JLabel("New birth year:");
         JLabel addPtsLabel = new JLabel("Add points:");
         JLabel rmPtsLabel = new JLabel("Remove points:");
+        JLabel stCndLabel = new JLabel("Change condition:");
+
+
+//        String[] = {"catchingUp", "sick",
+//                "present",
+//                notPresent}
+
+        conditionBox = new JComboBox(stCond);
+        conditionBox.addActionListener(this);
+
 
         this.add(firstNameLabel);
         this.add(firstNameField);
@@ -68,6 +92,10 @@ public class EditStudentFrame extends JFrame implements ActionListener{
         this.add(rmPtsField);
         this.add(rmPtsButt);
 
+        this.add(stCndLabel);
+        this.add(conditionBox);
+        this.add(stCndButt);
+
         this.setVisible(true);
     }
     @Override
@@ -86,6 +114,10 @@ public class EditStudentFrame extends JFrame implements ActionListener{
         }
         if(e.getSource()==rmPtsButt){
             studentToEdit.removePoints(Integer.parseInt(rmPtsField.getText()));
+        }
+        if(e.getSource()==stCndButt){
+            StudentCondition temp = stCond[conditionBox.getSelectedIndex()];
+            studentToEdit.setCondition(temp);
         }
     }
 }

@@ -23,6 +23,19 @@ public class MainFrame extends JFrame implements ActionListener {
 
     MainFrame(){
         deleteClassButton = new JButton();
+        addClassButton = new JButton();
+        editClassButton = new JButton();
+        deleteStudentButton = new JButton();
+        addStudentButton = new JButton();
+        editStudentButton = new JButton();
+
+        deleteClassButton.addActionListener(this);
+        addClassButton.addActionListener(this);
+        editClassButton.addActionListener(this);
+        deleteStudentButton.addActionListener(this);
+        addStudentButton.addActionListener(this);
+        editStudentButton.addActionListener(this);
+
         TableModel dataModelClass = new AbstractTableModel() {
             @Override
             public int getRowCount() {
@@ -56,7 +69,7 @@ public class MainFrame extends JFrame implements ActionListener {
         });
         this.setTitle("Title");
         this.setLayout(new GridLayout(4, 2));
-        this.setSize(1000, 2000);
+        this.setSize(1000, 1000);
         this.setVisible(true);
     }
 
@@ -65,6 +78,10 @@ public class MainFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==deleteClassButton){
             classes.removeClass(selectedClass[0].getName());
+        }
+
+        if(e.getSource()==deleteStudentButton){
+            selectedClass[0].getStudent(selectedStudent[0]);
         }
 
         if(e.getSource()==addClassButton){
@@ -76,6 +93,9 @@ public class MainFrame extends JFrame implements ActionListener {
             EditClassFrame frame = new EditClassFrame(selectedClass[0]);
         }
 
+        if(e.getSource()==editStudentButton){
+            EditStudentFrame frame = new EditStudentFrame(selectedStudent[0]);
+        }
 
     }
 }
