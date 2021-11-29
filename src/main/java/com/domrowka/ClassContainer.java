@@ -39,6 +39,16 @@ public class ClassContainer {
         }
     }
 
+    public List<String[]> getData(){
+        List<String[]> data = new ArrayList<String[]>();
+        Set<String> keySet = classes.keySet();
+        for (String name: keySet) {
+            String[] temp = {classes.get(name).getName(), String.valueOf(classes.get(name).count), String.valueOf(classes.get(name).maxCount)};
+            data.add(temp);
+        }
+        return data;
+    }
+
     public void thanosSnap() {
         Set<String> keySet = classes.keySet();
         for (String name: keySet) {

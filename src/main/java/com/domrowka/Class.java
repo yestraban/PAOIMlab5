@@ -49,6 +49,28 @@ public class Class {
         count++;
     }
 
+    public List<String[]> getData(){
+        List<String[]> data = new ArrayList<>();
+        //List<Student> tempList = searchPartial(filter);
+        for (Student name: studentList) {
+            //StudentCondition tempCond = name.condition;
+
+            String[] temp = {name.firstName, name.lastName, String.valueOf(name.points), String.valueOf(name.birthYear), String.valueOf(name.condition)};
+            data.add(temp);
+        }
+        return data;
+    }
+
+    public List<String[]> getFilteredData(String filter){
+        List<String[]> data = new ArrayList<>();
+        List<Student> tempList = searchPartial(filter);
+        for (Student name: tempList) {
+            String[] temp = {name.firstName, name.lastName, String.valueOf(name.points), String.valueOf(name.birthYear), String.valueOf(name.condition)};
+            data.add(temp);
+        }
+        return data;
+    }
+
     public void addPoints(Student student, double pts) {
         student.points+=pts;
     }
@@ -58,6 +80,7 @@ public class Class {
         if(student.points==0) {
             student = null;
         }
+        count--;
 
         /*
         if(student.points==0) {

@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.util.Objects;
 
 public class EditClassFrame extends JFrame implements ActionListener{
     Class classToEdit;
@@ -13,7 +14,7 @@ public class EditClassFrame extends JFrame implements ActionListener{
     JButton rammusButton;
     EditClassFrame(Class classInput){
         classToEdit = classInput;
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       // this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ImageIcon rammus = new ImageIcon("C:/Users/domro/IdeaProjects/PAOIMlab5/indeks.jpg");
         this.setSize(500, 300);
         this.setLayout(new GridLayout(3,2));
@@ -43,6 +44,9 @@ public class EditClassFrame extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==rammusButton){
+            if(Objects.equals(nameField.getText(), "") || Objects.equals(maxCountField.getText(), "")){
+                return;
+            }
             classToEdit.setMaxCount(Integer.parseInt(maxCountField.getText()));
             classToEdit.setName(nameField.getText());
             System.out.println(classToEdit.getName());

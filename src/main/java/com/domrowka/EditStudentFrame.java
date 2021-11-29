@@ -33,7 +33,7 @@ public class EditStudentFrame extends JFrame implements ActionListener{
         studentToEdit = input;
         this.setSize(500, 300);
         this.setLayout(new GridLayout(6,3));
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         firstNameField = new JTextField();
         lastNameField = new JTextField();
